@@ -6,13 +6,85 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ScannerFragment">
-
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/ads_view"
+    <LinearLayout
+        android:background="#3FB5A5"
+        android:id="@+id/toolBar"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="QR Scanner"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/back"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?actionBarItemBackground"
+                android:layout_alignParentRight="true"
+                app:cardBackgroundColor="#3FB5A5"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18.5dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="37dp"
+                android:layout_height="37dp">
+                <ImageView
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_flip_camera_ios_24"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/front"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?actionBarItemBackground"
+                android:layout_alignParentRight="true"
+                app:cardBackgroundColor="#3FB5A5"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18.5dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="37dp"
+                android:layout_height="37dp">
+                <ImageView
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_flip_camera_ios_24"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </LinearLayout>
+    <com.budiyev.android.codescanner.CodeScannerView
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/scanner_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="true"
+        app:frameColor="@android:color/white"
+        app:frameCornersSize="30dp"
+        app:frameCornersRadius="0dp"
+        app:frameAspectRatioWidth="1"
+        app:frameAspectRatioHeight="1"
+        app:frameSize="0.60"
+        app:frameThickness="2dp"
+        app:maskColor="#77000000"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

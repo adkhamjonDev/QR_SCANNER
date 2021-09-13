@@ -10,4 +10,19 @@
         android:name="uz.adkhamjon.qr_scanner.fragments.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="uz.adkhamjon.qr_scanner.fragments.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="uz.adkhamjon.qr_scanner.fragments.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="uz.adkhamjon.qr_scanner.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
