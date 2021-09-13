@@ -45,9 +45,6 @@ class ScannerFragment : Fragment(),View.OnClickListener {
                 }
 
             }
-
-
-
         }
         setOnClick()
         return binding.root
