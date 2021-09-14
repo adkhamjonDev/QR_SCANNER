@@ -27,7 +27,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
             <androidx.cardview.widget.CardView
-                android:id="@+id/back"
+                android:id="@+id/history"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?actionBarItemBackground"
