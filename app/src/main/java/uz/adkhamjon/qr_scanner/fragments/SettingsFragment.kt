@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import uz.adkhamjon.qr_scanner.R
 import uz.adkhamjon.qr_scanner.databinding.FragmentSettingsBinding
@@ -29,23 +30,28 @@ class SettingsFragment : Fragment() {
         binding.volume.setOnCheckedChangeListener { p0, p1 ->
             if(p1){
                 SoundSharedPreference.getInstance(requireContext()).setHasLang(true)
+                toast("Sound is On")
+
             }
             else if(!p1){
                 SoundSharedPreference.getInstance(requireContext()).setHasLang(false)
+                toast("Sound is Off")
             }
         }
         binding.vibration.setOnCheckedChangeListener { p0, p1 ->
             if(p1){
                 VibrateSharedPreference.getInstance(requireContext()).setHasLang(true)
+                toast("Vibration is On")
             }
             else if(!p1){
                 VibrateSharedPreference.getInstance(requireContext()).setHasLang(false)
+                toast("Vibration is Off")
             }
         }
         binding.feedback.setOnClickListener {
             val dialog = AlertDialog.Builder(requireContext())
             dialog.setTitle("Feedback")
-            dialog.setMessage("Email: Qr Scanner")
+            dialog.setMessage("Email: adkhamjon.rakhimov.dev@gamil.com")
             dialog.setPositiveButton("Send",
                 DialogInterface.OnClickListener { dialog, id ->
                     val intent = Intent(Intent.ACTION_SENDTO)
@@ -87,6 +93,10 @@ class SettingsFragment : Fragment() {
                 .startChooser()
         }
         return binding.root
+    }
+
+    private fun toast(s: String) {
+        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
     }
 
 }
