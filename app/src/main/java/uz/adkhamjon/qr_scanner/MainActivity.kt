@@ -1,17 +1,10 @@
 package uz.adkhamjon.qr_scanner
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import me.ibrahimsn.lib.SmoothBottomBar
 import uz.adkhamjon.qr_scanner.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
