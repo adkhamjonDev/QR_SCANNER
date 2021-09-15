@@ -79,7 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="65dp">
+        android:layout_height="@dimen/_50sdp">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -113,16 +113,19 @@
                 android:gravity="center_vertical"
                 android:layout_weight="1">
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/date"
                     android:textColor="@color/black"
-                    android:text=" 15:56 26/06/2021"
+                    android:text="15:56 26/06/2021"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:maxLines="1"
                     android:id="@+id/msg"
                     android:textColor="@color/black"
-                    android:text=" 15:56 26/06/2021"
+                    android:text="Hello)"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -131,12 +134,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_weight="2">
-                <ImageView
-                    android:id="@+id/save"
-                    android:visibility="gone"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_star"
+                <com.like.LikeButton
+                    app:icon_type="star"
+                    android:id="@+id/star_button"
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
             </LinearLayout>
@@ -149,26 +149,39 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@id/open"
+        app:layout_constraintBottom_toTopOf="@id/openInBrowser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardTop"
         android:layout_width="0dp"
         android:layout_height="0dp">
-        <LinearLayout
-            android:layout_margin="20dp"
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"/>
             <TextView
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 android:id="@+id/t"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:text="@string/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_marginRight="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/t"
                 android:id="@+id/txt"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/bottom_line"
                 android:paddingBottom="7dp"
                 android:layout_marginTop="7dp"
@@ -177,22 +190,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
+        android:visibility="visible"
         app:cardElevation="5dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?selectableItemBackground"
         app:cardBackgroundColor="#3FB5A5"
         app:cardCornerRadius="20dp"
-        android:id="@+id/open"
+        android:id="@+id/openInBrowser"
         android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="50dp">
+        android:layout_height="@dimen/_35sdp">
         <LinearLayout
             android:gravity="center"
             android:orientation="horizontal"
