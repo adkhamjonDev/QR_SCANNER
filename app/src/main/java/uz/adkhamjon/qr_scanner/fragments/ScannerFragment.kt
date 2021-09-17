@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -21,25 +22,35 @@ import com.budiyev.android.codescanner.ScanMode
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
 import uz.adkhamjon.qr_scanner.R
 import uz.adkhamjon.qr_scanner.databinding.FragmentScannerBinding
+import uz.adkhamjon.qr_scanner.db.AppDataBase
+import uz.adkhamjon.qr_scanner.models.DbModel
 import uz.adkhamjon.qr_scanner.sharedPreferences.SoundSharedPreference
 import uz.adkhamjon.qr_scanner.sharedPreferences.VibrateSharedPreference
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import com.karumi.dexter.listener.single.PermissionListener as PermissionListener1
 
 class ScannerFragment : Fragment(),View.OnClickListener {
     private lateinit var binding: FragmentScannerBinding
     private lateinit var codeScanner: CodeScanner
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var byteArray: ByteArray
+    private lateinit var appDataBase: AppDataBase
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentScannerBinding.inflate(inflater, container, false)
+        appDataBase= AppDataBase.getInstance(requireContext())
         codeScanner = CodeScanner(requireContext(), binding.scannerView)
         codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
         codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
@@ -68,7 +79,7 @@ class ScannerFragment : Fragment(),View.OnClickListener {
                 }catch (e:Exception){
                     e.printStackTrace()
                 }
-
+                appDataBase.scannerDao().addScanner(DbModel(data = data.toString(),date = currentDate,image = byteArray))
                 val bundle = bundleOf("data" to data.toString(), "date" to currentDate,"image" to byteArray)
                 val v = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 if(VibrateSharedPreference.getInstance(requireContext()).haslang) {
@@ -107,7 +118,24 @@ class ScannerFragment : Fragment(),View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
-        codeScanner.startPreview()
+        Dexter.withContext(context)
+                    .withPermission(Manifest.permission.CAMERA)
+                    .withListener(object : PermissionListener1 {
+                        @RequiresApi(Build.VERSION_CODES.R)
+                        override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                            codeScanner.startPreview()
+                           }
+                        override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                            Toast.makeText(context, "Permission denied", Toast.LENGTH_SHORT).show()
+                        }
+                        override fun onPermissionRationaleShouldBeShown(
+                            permission: PermissionRequest?,
+                            token: PermissionToken?
+                        ) {
+                            token?.continuePermissionRequest()
+                        }
+                    }).check()
+
     }
 
     override fun onDestroy() {

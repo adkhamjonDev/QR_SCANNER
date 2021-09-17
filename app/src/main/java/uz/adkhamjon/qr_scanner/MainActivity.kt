@@ -2,6 +2,7 @@ package uz.adkhamjon.qr_scanner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -22,5 +23,11 @@ class MainActivity : AppCompatActivity() {
         popupMenu.inflate(R.menu.menu)
         val menu = popupMenu.menu
         binding.bottomBar.setupWithNavController(menu, navController)
+    }
+    fun hide(){
+        binding.bottomBar.visibility= View.GONE
+    }
+    fun show(){
+        binding.bottomBar.visibility= View.VISIBLE
     }
 }

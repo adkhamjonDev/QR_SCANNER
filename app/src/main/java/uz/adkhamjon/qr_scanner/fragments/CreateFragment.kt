@@ -19,7 +19,6 @@ class CreateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding=FragmentCreateBinding.inflate(inflater, container, false)
         loadData()
         menuRvAdapter= MenuRvAdapter(list,object :MenuRvAdapter.OnItemClickListener{

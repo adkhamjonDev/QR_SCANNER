@@ -1,7 +1,5 @@
 package uz.adkhamjon.qr_scanner.models
-
 import java.io.Serializable
-
 class ScannerModel:Serializable{
     var date:String?=null
     var image:ByteArray?=null

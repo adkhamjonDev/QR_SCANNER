@@ -30,6 +30,7 @@ class InfoFragment : Fragment() {
             image=arguments?.getByteArray("image")as ByteArray
         }
         binding.msg.text=str
+        binding.txt.text=str
         binding.date.text=date.toString()
         val i=image
         val bitmap = image?.let { BitmapFactory.decodeByteArray(i, 0, it.size) }

@@ -39,10 +39,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                app:queryBackground="@null"
+                android:backgroundTint="#433FB5A5"
                 android:background="@drawable/search_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/history_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
                 android:id="@+id/recView"
